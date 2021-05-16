@@ -18,7 +18,7 @@ with open(datefile) as file, open(workingfile,'rb',buffering=0) as worker:
             algo.update(mem[:i])
 
         os.popen("echo \""+ algo.hexdigest() + "\" > a.txt")
-        os.popen("git add . && git commit --date='" + workingDate + " 12:00:00' -m \"test\" && git push")
+        os.popen("git add . && git commit --date=\"" + workingDate + "\" -m \"test\" && git push")
 
         print(workingDate)
 
