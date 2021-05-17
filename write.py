@@ -19,6 +19,6 @@ with open(datefile) as file, open(workingfile,'rb',buffering=0) as worker:
         os.popen("echo \""+ algo.hexdigest() + "\" > a.txt")
         b = os.popen("git add . && git commit --date=\"" + workingDate + "\" -m \"test\" && git push")
 
-        print(workingDate + " " + b)
+        print(workingDate + " " + str(b))
 
 
