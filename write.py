@@ -19,11 +19,11 @@ with open(datefile) as file, open(workingfile,'rb',buffering=0) as worker:
         for i in iter(lambda : worker.readinto(mem),0):
             algo.update(mem[:i])
 
-        time.sleep(6)
+        time.sleep(2)
+        os.system("echo \""+ algo.hexdigest() + str(random.random()) + "\" > " + workingfile)
+        time.sleep(3)
+        os.system("git add . && git commit --date \"" + workingDate + "\" -m \""+ str(random.random()) +"\" && git push")
 
-        retOne = subprocess.run("echo \""+ algo.hexdigest() + str(random.random()) + "\" > a.txt", capture_output=True, shell=True)
-        retTwo = subprocess.run("git add .; git commit --date=\"" + workingDate + "\" -m \""+ str(random.random()) +"\"; git push")
-
-        print(workingDate + " " + str(retTwo))
+        print(workingDate)
 
 
