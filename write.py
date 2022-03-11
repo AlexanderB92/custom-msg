@@ -3,7 +3,7 @@ import time
 import hashlib
 
 datefile = "dates.txt"
-workingfile = "a.txt"
+workingfile = "store.txt"
 
 with open(datefile) as file, open(workingfile,'rb',buffering=0) as worker:
     for line in file:
@@ -17,10 +17,9 @@ with open(datefile) as file, open(workingfile,'rb',buffering=0) as worker:
         for i in iter(lambda : worker.readinto(mem),0):
             algo.update(mem[:i])
 
-        os.popen("echo \""+ algo.hexdigest() + "\" > a.txt")    
-        print("git add . && git commit --date='" + workingDate + " 12:00:00' -m \"test\" && git push")
+        os.popen("echo \""+ algo.hexdigest() + "\" > a.txt")
+        os.popen("git add . && git commit --date='" + workingDate + " 12:00:00' -m \"test\" && git push")
 
-        
-        #os.popen("git add . && git commit --date='" + workingDate + " 12:00:00' -m \"test\" && git push")
+        print(workingDate)
 
 
