@@ -1,9 +1,12 @@
 import os
 import time
 import hashlib
+import random
+import subprocess
 
 datefile = "dates.txt"
 workingfile = "store.txt"
+
 
 with open(datefile) as file, open(workingfile,'rb',buffering=0) as worker:
     for line in file:
@@ -18,9 +21,9 @@ with open(datefile) as file, open(workingfile,'rb',buffering=0) as worker:
 
         time.sleep(6)
 
-        os.popen("echo \""+ algo.hexdigest() + "\" > a.txt")
-        b = os.popen("git add . && git commit --date=\"" + workingDate + "\" -m \"test\" && git push")
+        retOne = subprocess.run("echo \""+ algo.hexdigest() + str(random.random()) + "\" > a.txt", capture_output=True, shell=True)
+        retTwo = subprocess.run("git add .; git commit --date=\"" + workingDate + "\" -m \""+ str(random.random()) +"\"; git push")
 
-        print(workingDate + " " + str(b))
+        print(workingDate + " " + str(retTwo))
 
 
