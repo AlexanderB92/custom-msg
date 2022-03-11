@@ -2,7 +2,6 @@ import os
 import time
 import hashlib
 import random
-import subprocess
 
 datefile = "dates.txt"
 workingfile = "store.txt"
